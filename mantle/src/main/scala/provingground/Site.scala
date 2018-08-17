@@ -76,7 +76,7 @@ object Site {
        |
    """.stripMargin
 
-  def nav(relDocsPath: String = ""): Elem =
+  def nav(relDocsPath: String = ""): Elem = {
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -120,6 +120,7 @@ object Site {
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+  }
 
   def foot(relDocsPath: String): String =
     s"""
@@ -214,11 +215,11 @@ object Site {
             val name        = js.obj("name").str
             val title       = js.obj("title").str
             val url: String = s"${relDocsPath}tuts/$name.html"
-            <li>
+            {<li>
             <a href={url}>
               {title}
             </a>
-          </li>
+          </li>}
           }
 
         }
@@ -287,11 +288,11 @@ object Site {
               val dateString  = js.obj("date").str
               val title       = js.obj("title").str
               val url: String = s"${relDocsPath}posts/$name.html"
-              <li>
+              {<li>
             <a href={url}>
               {dateString + title}
             </a>
-          </li>
+          </li>}
           }
         }
       )
