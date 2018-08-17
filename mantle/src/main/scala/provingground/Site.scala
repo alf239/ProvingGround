@@ -205,7 +205,7 @@ object Site {
   def tutList(relDocsPath: String): Seq[Elem] =
     Try {
       allTuts.map(
-        (tut) => <li><a href={s"${tut.url(relDocsPath)}"}>{tut.title}</a></li>
+        (tut) => (<li><a href={s"${tut.url(relDocsPath)}"}>{tut.title}</a></li>)
       )
     }.orElse(
         Try {
@@ -215,13 +215,12 @@ object Site {
             val name        = js.obj("name").str
             val title       = js.obj("title").str
             val url: String = s"${relDocsPath}tuts/$name.html"
-            {<li>
-            <a href={url}>
-              {title}
-            </a>
-          </li>}
+            (<li>
+              <a href={url}>
+                {title}
+              </a>
+            </li>)
           }
-
         }
       )
       .getOrElse(Vector())
@@ -276,7 +275,7 @@ object Site {
     Try {
       allPosts.map(
         (post) =>
-          <li><a href={s"${post.url(relDocsPath)}"}>{post.dateString + post.title}</a></li>
+          (<li><a href={s"${post.url(relDocsPath)}"}>{post.dateString + post.title}</a></li>)
       )
     }.orElse(
         Try {
@@ -288,11 +287,11 @@ object Site {
               val dateString  = js.obj("date").str
               val title       = js.obj("title").str
               val url: String = s"${relDocsPath}posts/$name.html"
-              {<li>
-            <a href={url}>
-              {dateString + title}
-            </a>
-          </li>}
+              (<li>
+                <a href={url}>
+                  {dateString + title}
+                </a>
+              </li>)
           }
         }
       )
